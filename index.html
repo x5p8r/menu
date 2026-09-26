@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>قائمة الطعام الرقمية | Digital Menu</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <header class="navbar">
+    <div class="container nav-container">
+      <div class="brand">
+        <i class="fa-solid fa-utensils"></i>
+        <span class="brand-title">مطعم السعادة</span>
+      </div>
+      <div class="search-box">
+        <i class="fa-solid fa-magnifying-glass search-icon"></i>
+        <input type="text" id="search-input" placeholder="ابحث عن طبق أو مكون...">
+      </div>
+      <button class="cart-btn" id="open-cart-btn" aria-label="سلة الطلبات">
+        <i class="fa-solid fa-basket-shopping"></i>
+        <span class="cart-badge" id="cart-badge">0</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="container main-content">
+    
+    <!-- Category Filters Navigation -->
+    <section class="categories-wrapper">
+      <div class="categories-scroll">
+        <button class="category-btn active" data-category="all">
+          <i class="fa-solid fa-border-all"></i> الكل
+        </button>
+        <button class="category-btn" data-category="starters">
+          <i class="fa-solid fa-bowl-food"></i> المقبلات
+        </button>
+        <button class="category-btn" data-category="mains">
+          <i class="fa-solid fa-drumstick-bite"></i> الأطباق الرئيسية
+        </button>
+        <button class="category-btn" data-category="drinks">
+          <i class="fa-solid fa-glass-water"></i> المشروبات
+        </button>
+        <button class="category-btn" data-category="desserts">
+          <i class="fa-solid fa-ice-cream"></i> الحلويات
+        </button>
+      </div>
+    </section>
+
+    <!-- Dishes Grid Section -->
+    <section class="dishes-section">
+      <div class="dishes-grid" id="dishes-grid"></div>
+      <div class="no-results hidden" id="no-results">
+        <i class="fa-solid fa-face-frown no-results-icon"></i>
+        <p>عفواً، لا توجد أطباق تطابق بحثك حالياً!</p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Dish Detail Modal -->
+  <div class="modal-overlay hidden" id="dish-modal">
+    <div class="modal-card">
+      <button class="close-modal-btn" id="close-modal-btn">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+      <div class="modal-image-container">
+        <img id="modal-img" src="" alt="">
+        <span class="modal-category-badge" id="modal-category"></span>
+      </div>
+      <div class="modal-body">
+        <div class="modal-header-row">
+          <h2 id="modal-title"></h2>
+          <span class="modal-price" id="modal-price"></span>
+        </div>
+        <div class="modal-meta">
+          <span class="calories-tag" id="modal-calories">
+            <i class="fa-solid fa-fire-flame-curved"></i> <span></span> سعرة حرارية
+          </span>
+        </div>
+        <p class="modal-description" id="modal-description"></p>
+        
+        <div class="modal-ingredients">
+          <h4>المكونات الأساسية:</h4>
+          <div class="ingredients-tags" id="modal-ingredients"></div>
+        </div>
+
+        <div class="modal-footer">
+          <div class="quantity-control">
+            <button class="qty-btn" id="qty-minus"><i class="fa-solid fa-minus"></i></button>
+            <span class="qty-value" id="qty-count">1</span>
+            <button class="qty-btn" id="qty-plus"><i class="fa-solid fa-plus"></i></button>
+          </div>
+          <button class="add-to-cart-btn" id="modal-add-btn">
+            <i class="fa-solid fa-cart-plus"></i> إضافة للسلة
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cart Drawer Overlay -->
+  <div class="cart-overlay hidden" id="cart-overlay"></div>
+
+  <!-- Cart Drawer -->
+  <aside class="cart-drawer" id="cart-drawer">
+    <div class="cart-header">
+      <h3><i class="fa-solid fa-basket-shopping"></i> سلة الطلبات</h3>
+      <button class="close-cart-btn" id="close-cart-btn">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+
+    <div class="cart-body" id="cart-items-container">
+      <!-- Dynamic Cart Items -->
+    </div>
+
+    <div class="cart-footer">
+      <div class="cart-summary-row">
+        <span>المجموع الكلي:</span>
+        <span class="cart-total-price" id="cart-total-price">$0.00</span>
+      </div>
+      <div class="cart-actions">
+        <button class="checkout-btn" id="checkout-btn">
+          <i class="fa-solid fa-circle-check"></i> تأكيد الطلب
+        </button>
+        <button class="clear-cart-btn" id="clear-cart-btn">
+          تفريغ السلة
+        </button>
+      </div>
+    </div>
+  </aside>
+
+  <script src="script.js"></script>
+</body>
+</html>
